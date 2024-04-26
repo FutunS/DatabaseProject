@@ -102,12 +102,10 @@ public class BranchManagementProgram {
 
         resultSet.close();
     }
-}
 
 
-/*
-  import java.sql.*;
-import java.util.Scanner;
+ // import java.sql.*;
+//import java.util.Scanner;
 
 public class VelocityMotorsDB {
     private static final String URL = "jdbc:mariadb://localhost:3306/Velocity_Motors";
@@ -175,7 +173,9 @@ public class VelocityMotorsDB {
             } else {
                 System.out.println("A problem occurred. Branch not added.");
             }
-        }
+        } catch (SQLException e) {
+        System.out.println("Error executing the query: " + e.getMessage());
+    }
     }
 
     private static void showAllBranches(Connection conn) throws SQLException {
@@ -183,6 +183,7 @@ public class VelocityMotorsDB {
 
         try (Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
+             boolean hasBranches = false;
             while (rs.next()) {
                 int id = rs.getInt("BranchID");
                 String phone = rs.getString("BPhone");
@@ -191,14 +192,25 @@ public class VelocityMotorsDB {
                 String zip = rs.getString("Zip");
                 System.out.printf("Branch ID: %d, Phone: %s, City: %s, State: %s, Zip: %s%n", id, phone, city, state, zip);
             }
+             if (!hasBranches) {
+            System.out.println("No branches found.");
         }
+        }  catch (SQLException e) {
+         System.out.println("Error connecting to the database: ");
+         e.printStackTrace();
+    } 
     }
+    
+    
 }
+
+}
+
 
  
 
-code provided in tutorial 8
-
+//code provided in tutorial 
+/*
  import java.sql.*;
 public class MariaJdbcConn {
 public static void main(String[] args) {
