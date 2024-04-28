@@ -191,6 +191,8 @@ public class VelocityMotorsDB {
                 String state = rs.getString("State");
                 String zip = rs.getString("Zip");
                 System.out.printf("Branch ID: %d, Phone: %s, City: %s, State: %s, Zip: %s%n", id, phone, city, state, zip);
+               
+                hasBranches = true;
             }
              if (!hasBranches) {
             System.out.println("No branches found.");
